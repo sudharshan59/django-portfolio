@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9*#7#f0yfl_pqg=nd&02&1fl+)t1)n-!8ps5z9cr(_wy=(ydd8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['sudharshan-portfolio.onrender.com', 'localhost', '127.0.0.1']
 
@@ -134,4 +134,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Static files (CSS, JS, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ← Critical for Render
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+
+import os
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'# ← Critical for Render
