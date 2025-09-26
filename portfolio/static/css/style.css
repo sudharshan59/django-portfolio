@@ -2,8 +2,8 @@
 :root {
     --primary: #FFD700;          /* Electric Yellow */
     --primary-hover: #FFC400;
-    ----dark: #0A192F;        /* Deep Navy */
-    --darker: #112240;      /* Slightly lighter for cards */          /* Slightly lighter black */
+    --dark: #000000;             /* Pure Black */
+    --darker: #0A0A0A;           /* Slightly lighter black for cards */
     --light: #FFFFFF;
     --muted: #B0B0B0;
     --transition: all 0.3s ease;
@@ -33,7 +33,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-     background: linear-gradient(135deg, var(--dark) 0%, #112240 100%);
+    background: #000000; /* Pure black */
 }
 .hero-content {
     max-width: 800px;
@@ -76,7 +76,7 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-    background: rgba(0, 255, 149, 0.95) !important;
+    background: rgba(0, 0, 0, 0.95) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0,0,0,0.5);
