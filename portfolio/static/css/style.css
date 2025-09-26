@@ -211,7 +211,7 @@ section {
 .progress-bar {
     background: var(--primary);
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-    transition: width 1.2s ease-in-out;
+    transition: width 1.2s ease-out; /* ← Ensure this exists */
 }
 
 /* ===== BUTTONS ===== */

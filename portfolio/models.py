@@ -6,6 +6,7 @@ class PersonalInfo(models.Model):
     title = models.CharField(max_length=100, blank=True)
     bio = models.TextField()
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
+    resume = models.FileField(upload_to='resume/', blank=True, null=True)  # ← ADDED
     email = models.EmailField()
     phone = models.CharField(max_length=20, blank=True)
     location = models.CharField(max_length=100, blank=True)
@@ -15,6 +16,7 @@ class PersonalInfo(models.Model):
 
     class Meta:
         verbose_name_plural = "Personal Info"
+
 
 class Skill(models.Model):
     CATEGORY_CHOICES = [('technical', 'Technical'), ('soft', 'Soft Skills')]
@@ -28,6 +30,7 @@ class Skill(models.Model):
 
     class Meta:
         ordering = ['-level']
+
 
 class Experience(models.Model):
     title = models.CharField(max_length=100)
@@ -43,6 +46,7 @@ class Experience(models.Model):
     class Meta:
         ordering = ['-start_date']
 
+
 class Education(models.Model):
     degree = models.CharField(max_length=150)
     institution = models.CharField(max_length=150)
@@ -55,6 +59,7 @@ class Education(models.Model):
 
     class Meta:
         ordering = ['-start_date']
+
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
@@ -71,6 +76,7 @@ class Project(models.Model):
     class Meta:
         ordering = ['order']
 
+
 class Achievement(models.Model):
     title = models.CharField(max_length=150)
     issuer = models.CharField(max_length=100, blank=True)
@@ -83,6 +89,7 @@ class Achievement(models.Model):
 
     class Meta:
         ordering = ['-date_earned']
+
 
 class ContactInfo(models.Model):
     social_platform = models.CharField(max_length=30)

@@ -58,6 +58,13 @@
         <p class="text-muted mt-3 animate-bio" style="font-size: 1.1rem; max-width: 600px;">
             {{ personal.bio }}
         </p>
+        {% if personal.resume %}
+    <a href="{{ personal.resume.url }}" 
+       class="btn btn-yellow mt-3 px-4 py-2" 
+       download="Sudharshan_S_Resume.pdf">
+        <i class="fas fa-download me-2"></i>Download Resume
+    </a>
+{% endif %}
     </div>
 </section>
 
@@ -108,8 +115,11 @@
                                 <span class="fw-bold">{{ skill.name }}</span>
                             </div>
                             <div class="progress" style="height: 8px;">
-                                <div class="progress-bar bg-yellow" role="progressbar" style="width: {{ skill.level }}%;"></div>
-                            </div>
+                               <div class="progress-bar bg-yellow skill-bar" 
+                                  role="progressbar" 
+                                  data-skill="{{ skill.level }}"
+                                   style="width: 0%;"></div>
+                               </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -280,6 +290,30 @@
             }
         });
     });
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all skill bars
+    const skillBars = document.querySelectorAll('.skill-bar');
+
+    // Create Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const targetWidth = bar.getAttribute('data-skill') + '%';
+                bar.style.width = targetWidth;
+                // Stop observing after animation
+                observer.unobserve(bar);
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the bar is visible
+    });
+
+    // Observe each skill bar
+    skillBars.forEach(bar => {
+        observer.observe(bar);
+    });
+});
 </script>
 </body>
 </html>
