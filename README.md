@@ -1,7 +1,8 @@
 # 🌟 Django Admin-Managed Portfolio
 
 🚀 Live Demo: [sudharshan-portfolio.onrender.com](https://sudharshan-portfolio.onrender.com) 
-   ![Portfolio Screenshot](./screenshot-weather-app.png)  
+
+   ![Portfolio Screenshot](./portfolio.jpg)  
 
 
 ---
