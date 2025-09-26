@@ -1,7 +1,7 @@
 # 🌟 Django Admin-Managed Portfolio
 
 🚀 Live Demo: [sudharshan-portfolio.onrender.com](https://sudharshan-portfolio.onrender.com)  
-🎯 AI Projects Live: DocuQuery-AI • Sentiment Analyzer
+
 
 ---
 
