@@ -1,6 +1,6 @@
 # 🌟 Django Admin-Managed Portfolio
 
-🚀 Live Demo: [sudharshan-portfolio.onrender.com]([https://sudharshan-portfolio.onrender.com](https://django-portfolio-latest-1.onrender.com/) 
+🚀 Live Demo: [sudharshan-portfolio.onrender.com](https://django-portfolio-latest-1.onrender.com/) 
 
    ![Portfolio Screenshot](./portfolio.jpg)  
 
