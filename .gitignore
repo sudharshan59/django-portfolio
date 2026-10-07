@@ -1,18 +1,42 @@
-# Virtual Environment
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
 venv/
 .venv/
 env/
+.env/
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# Database
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
 
-# IDE
-.vscode/
-.idea/
+# Environment Variables
+.env
+.env.local
+.env.*
 
-# Media & Static (optional — but safe to ignore since they're in git)
+# Media and Static uploads
 /media/
 /staticfiles/
+/static/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
