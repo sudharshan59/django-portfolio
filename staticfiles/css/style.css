@@ -18,22 +18,34 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--dark);
+    background-color: transparent;
     color: var(--light);
     padding-top: 70px;
     line-height: 1.6;
 }
 
+/* ===== PREVENT IMAGE DOWNLOAD/DRAG ===== */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 /* ===== HERO SECTION ===== */
 #hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: #000000; /* Pure black */
+    background: transparent;
 }
 .hero-content {
     max-width: 800px;
@@ -124,7 +136,7 @@ body {
 section {
     padding: 5rem 0;
     scroll-margin-top: 80px;
-    background-color: var(--dark);
+    background-color: transparent;
 }
 .section-title {
     font-weight: 800;
@@ -211,7 +223,7 @@ section {
 .progress-bar {
     background: var(--primary);
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-    transition: width 1.2s ease-in-out;
+    transition: width 1.2s ease-out; /* ← Ensure this exists */
 }
 
 /* ===== BUTTONS ===== */

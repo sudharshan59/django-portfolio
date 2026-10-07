@@ -1,0 +1,118 @@
+name: Django CI/CD - AWS EC2
+
+on:
+
+  # -------------------------
+  # CI - Pull Request
+  # -------------------------
+  pull_request:
+    branches:
+      - aws
+
+  # -------------------------
+  # CI + CD - Production
+  # -------------------------
+  push:
+    branches:
+      - aws
+
+
+jobs:
+
+  # =========================
+  # CI - TEST
+  # =========================
+  test:
+    name: Django CI
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Django system checks
+        run: |
+          python manage.py check
+
+      - name: Run tests
+        run: |
+          python manage.py test
+
+
+  # =========================
+  # CD - DEPLOY TO AWS EC2
+  # =========================
+  deploy:
+    name: Deploy to AWS EC2
+
+    needs: test
+
+    # Deploy only after aws branch is updated
+    # This normally happens when a PR is merged.
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/aws'
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.2
+
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+
+          script: |
+
+            set -e
+
+            echo "======================================"
+            echo "Starting production deployment"
+            echo "======================================"
+
+            cd /home/ec2-user/django-portfolio
+
+            echo "Fetching latest aws branch..."
+            git fetch origin aws
+
+            echo "Updating application..."
+            git reset --hard origin/aws
+
+            echo "Activating virtual environment..."
+            source venv/bin/activate
+
+            echo "Installing dependencies..."
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+
+            echo "Running database migrations..."
+            python manage.py migrate --noinput
+
+            echo "Collecting static files..."
+            python manage.py collectstatic --noinput
+
+            echo "Restarting Django service..."
+            sudo systemctl restart django
+
+            echo "Checking Django service..."
+            sudo systemctl is-active --quiet django
+
+            echo "======================================"
+            echo "Production deployment successful"
+            echo "======================================"
